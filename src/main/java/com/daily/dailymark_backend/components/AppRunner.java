@@ -1,5 +1,7 @@
 package com.daily.dailymark_backend.components;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -8,10 +10,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-
 @Component
 public class AppRunner implements ApplicationRunner {
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     private final Environment environment;
 
     @Autowired
@@ -21,12 +23,12 @@ public class AppRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        System.out.println("===================Profiles Test ===================");
-        System.out.println("Active profiles : "+ Arrays.toString(environment.getActiveProfiles()));
-        System.out.println("Datasource url : " + environment.getProperty("spring.datasource.url"));
-        System.out.println("Datasource username : " + environment.getProperty("spring.datasource.username"));
-        System.out.println("Datasource password : " + environment.getProperty("spring.datasource.password"));
-        System.out.println("Server Port : " + environment.getProperty("server.port"));
-        System.out.println("====================================================");
+        logger.info("===================Profiles Test ===================");
+        logger.info("Active profiles : "+ Arrays.toString(environment.getActiveProfiles()));
+        logger.info("Datasource url : " + environment.getProperty("spring.datasource.url"));
+        logger.info("Datasource username : " + environment.getProperty("spring.datasource.username"));
+        logger.info("Datasource password : " + environment.getProperty("spring.datasource.password"));
+        logger.info("Server Port : " + environment.getProperty("server.port"));
+        logger.info("====================================================");
     }
 }
